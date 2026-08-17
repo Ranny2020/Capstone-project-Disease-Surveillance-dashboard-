@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Health Facilities | HealthWatch</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="health-facilities.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo">
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+        <a href="disease-report.html" class="sidebar-link">Disease Report</a>
+        <a href="#" class="sidebar-link">Case Reporting</a>
+        <a href="analytics.html" class="sidebar-link">Analytics</a>
+        <a href="health-facilities.html" class="sidebar-link active">Health Facilities</a>
+        <a href="#" class="sidebar-link">Health Alerts</a>
+        <a href="#" class="sidebar-link">Users</a>
+        <a href="#" class="sidebar-link">Settings</a>
+      </nav>
+      <a class="logout-button" href="login.html">Log Out</a>
+    </aside>
+
+    <aside class="sidebar-drawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+          <button class="drawer-close" type="button">✕</button>
+        </div>
+        <nav class="drawer-nav">
+          <a href="dashboard.html" class="drawer-link">Dashboard</a>
+          <a href="disease-report.html" class="drawer-link">Disease Report</a>
+          <a href="#" class="drawer-link">Case Reporting</a>
+          <a href="analytics.html" class="drawer-link">Analytics</a>
+          <a href="health-facilities.html" class="drawer-link active">Health Facilities</a>
+          <a href="#" class="drawer-link">Health Alerts</a>
+          <a href="#" class="drawer-link">Users</a>
+          <a href="#" class="drawer-link">Settings</a>
+        </nav>
+        <a class="logout-button" href="login.html">Log Out</a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <button class="menu-toggle" id="drawerToggle">☰</button>
+      </header>
+
+      <section class="facilities-header">
+        <div>
+          <h1>Health Facilities</h1>
+          <p>List of registered health facilities</p>
+        </div>
+        <div class="facilities-actions">
+          <div class="search-box">
+            <span>🔍</span>
+            <input type="search" placeholder="Search for Facility Name" aria-label="Search for Facility Name">
+          </div>
+          <select class="filter-select" aria-label="State filter">
+            <option>All states</option>
+          </select>
+          <a class="add-facility" href="#">Add Facility</a>
+        </div>
+      </section>
+
+      <section class="facilities-list-card">
+        <div class="facility-list">
+          <div class="facility-item">
+            <div class="facility-avatar">+</div>
+            <div class="facility-info">
+              <div class="facility-name">Nassarawa General Hospital, Kano</div>
+              <div class="facility-sub">Kano State</div>
+            </div>
+            <div class="facility-phone">+234 7012345678</div>
+            <div class="facility-meta">
+              <span class="status-badge active">Active</span>
+              <button class="edit-btn" aria-label="Edit facility">✎</button>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-avatar">+</div>
+            <div class="facility-info">
+              <div class="facility-name">Aminu Kano Teaching Hospital, Kano</div>
+              <div class="facility-sub">Kano State</div>
+            </div>
+            <div class="facility-phone">+234 7012345678</div>
+            <div class="facility-meta">
+              <span class="status-badge active">Active</span>
+              <button class="edit-btn" aria-label="Edit facility">✎</button>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-avatar">+</div>
+            <div class="facility-info">
+              <div class="facility-name">Lagos State University Teaching Hospital (LASUTH)</div>
+              <div class="facility-sub">Lagos State</div>
+            </div>
+            <div class="facility-phone">+234 7012345678</div>
+            <div class="facility-meta">
+              <span class="status-badge active">Active</span>
+              <button class="edit-btn" aria-label="Edit facility">✎</button>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-avatar">+</div>
+            <div class="facility-info">
+              <div class="facility-name">General Hospital, Kawo Kaduna</div>
+              <div class="facility-sub">Kaduna State</div>
+            </div>
+            <div class="facility-phone">+234 7012345678</div>
+            <div class="facility-meta">
+              <span class="status-badge active">Active</span>
+              <button class="edit-btn" aria-label="Edit facility">✎</button>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-avatar">+</div>
+            <div class="facility-info">
+              <div class="facility-name">Gwarimpa General Hospital</div>
+              <div class="facility-sub">FCT, Abuja</div>
+            </div>
+            <div class="facility-phone">+234 7012345678</div>
+            <div class="facility-meta">
+              <span class="status-badge active">Active</span>
+              <button class="edit-btn" aria-label="Edit facility">✎</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
