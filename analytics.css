@@ -148,6 +148,11 @@
   .donut svg{max-width:100%;height:auto;display:block}
   .donut .donut-center{position:absolute}
   .loc-name{max-width:40%;}
+
+  /* Reduce center total size so it fits inside smaller donuts on mobile */
+  .donut .donut-center { padding: 6px; }
+  .donut .donut-center strong { font-size: 1rem; line-height: 1; }
+  .donut .donut-center .muted { font-size: 0.75rem; }
 }
 
 @media (max-width: 640px) {
@@ -166,4 +171,8 @@
   .donut.big { width: 100px; height: 100px; }
   .pie { width: 140px; height: 140px; }
   .bar { width: 22px; }
+
+  /* further reduce the total text on very small screens */
+  .donut .donut-center strong { font-size: 0.95rem; }
+  .donut .donut-center .muted { font-size: 0.7rem; }
 }
