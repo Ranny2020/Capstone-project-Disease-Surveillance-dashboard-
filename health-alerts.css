@@ -1,0 +1,44 @@
+/* Styles for Health Alerts page */
+.alerts-header{margin-bottom:18px}
+.alerts-header h1{margin:0;font-size:2rem}
+.alerts-header p{margin:6px 0 0;color:#3f6f5a}
+
+.alerts-card{background:#fff;padding:18px;border-radius:12px;border:2px solid #0b4f3f}
+.alerts-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.alert-item{display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:8px;border-bottom:1px solid rgba(4,73,54,0.08)}
+.alert-left{display:flex;align-items:center;gap:12px;max-width:72%}
+.alert-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#f3fbf7;color:#044936;font-size:1.6rem;border:1px solid rgba(4,73,54,0.08)}
+.alert-text{overflow:hidden}
+.alert-title{font-weight:800;color:#062d23}
+.alert-sub{color:#3f6f5a;margin-top:6px;font-size:0.95rem}
+
+.alert-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.badge{padding:8px 12px;border-radius:8px;font-weight:700;color:#fff}
+.badge.high{background:#ff6b6b;color:#fff}
+.badge.medium{background:#f7c948;color:#000}
+.badge.low{background:#9be6b0;color:#065332}
+.badge.info{background:#3f7bff;color:#fff}
+.alert-time{color:#083827;font-weight:600}
+
+.alerts-actions{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.view-all{background:#044936;color:#f6fcf8;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700}
+.back-btn{background:#fff;border:1px solid #044936;color:#044936;padding:10px 16px;border-radius:8px;text-decoration:none}
+
+/* Responsive adjustments */
+@media (max-width: 920px){
+  .alert-left{max-width:65%}
+}
+@media (max-width: 640px){
+  .alert-item{flex-direction:row;align-items:flex-start}
+  .alert-left{max-width:100%}
+  .alert-right{align-items:flex-end}
+  .alert-icon{width:48px;height:48px}
+}
+@media (max-width:420px){
+  .dashboard-shell{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .alert-title{font-size:0.95rem}
+  .alert-sub{font-size:0.9rem}
+  .alert-time{font-size:0.9rem}
+  .view-all{padding:10px 14px}
+}
