@@ -78,8 +78,10 @@
 }
 
 @media (max-width: 640px) {
-  .donut-card-wrap{flex-direction:column}
-  .donut-card{flex-direction:column;align-items:center;padding:12px}
+  .top-row { flex-direction: column; align-items: stretch; }
+  .large-chart { order: 1; width: 100%; }
+  .donut-card-wrap{flex-direction:column; order: 2; width: 100%; gap:12px}
+  .donut-card{flex-direction:column;align-items:center;padding:12px;width:100%;max-width:100%}
   .donut-legend{margin-left:0;margin-top:12px;align-items:center}
   .pie-row{flex-direction:column;align-items:center}
   .side-legend{min-width:auto;margin-top:8px}
