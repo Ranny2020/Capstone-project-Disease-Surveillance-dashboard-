@@ -69,8 +69,8 @@
 /* Make the Gender donut container wider on desktop and ensure contents fit */
 @media (min-width: 921px) {
   .donut-card-wrap .donut-card:last-child {
-    width: 360px;
-    min-width: 320px;
+    width: 440px;
+    min-width: 360px;
     flex: none;
     display: flex;
     flex-direction: column;
@@ -81,11 +81,14 @@
   .donut-card-wrap .donut-card:last-child h3 { align-self: flex-start; margin: 4px 0 12px 8px; }
 
   .donut-card:last-child .donut.big {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
   }
 
-  .donut-card:last-child .donut-legend { max-width: calc(100% - 200px); margin-top: 10px; align-self: flex-start; }
+  .donut-card:last-child .donut-legend { max-width: calc(100% - 240px); margin-top: 10px; align-self: flex-start; }
+
+  /* reduce center text size slightly so it fits in the hole */
+  .donut-card:last-child .donut-center strong { font-size: 1.1rem; }
 }
 
 .right-column { display:flex; flex-direction:column; gap:18px; }
