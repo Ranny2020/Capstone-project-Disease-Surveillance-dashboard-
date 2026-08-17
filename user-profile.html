@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>User Profile | HealthWatch</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="user-profile.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo">
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+        <a href="disease-report.html" class="sidebar-link">Disease Report</a>
+        <a href="#" class="sidebar-link">Case Reporting</a>
+        <a href="analytics.html" class="sidebar-link">Analytics</a>
+        <a href="health-facilities.html" class="sidebar-link">Health Facilities</a>
+        <a href="health-alerts.html" class="sidebar-link">Health Alerts</a>
+        <a href="user-profile.html" class="sidebar-link active">Users</a>
+        <a href="#" class="sidebar-link">Settings</a>
+      </nav>
+      <a class="logout-button" href="login.html">Log Out</a>
+    </aside>
+
+    <aside class="sidebar-drawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+          <button class="drawer-close" type="button">✕</button>
+        </div>
+        <nav class="drawer-nav">
+          <a href="dashboard.html" class="drawer-link">Dashboard</a>
+          <a href="disease-report.html" class="drawer-link">Disease Report</a>
+          <a href="#" class="drawer-link">Case Reporting</a>
+          <a href="analytics.html" class="drawer-link">Analytics</a>
+          <a href="#" class="drawer-link">Health Facilities</a>
+          <a href="#" class="drawer-link">Health Alerts</a>
+          <a href="#" class="drawer-link active">Users</a>
+          <a href="#" class="drawer-link">Settings</a>
+        </nav>
+        <a class="logout-button" href="login.html">Log Out</a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <button class="menu-toggle" id="drawerToggle">☰</button>
+      </header>
+
+      <section class="profile-header">
+        <h1>User Profile</h1>
+        <p>Manage your personal information</p>
+      </section>
+
+      <section class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-photo">
+            <img src="nene.jpeg" alt="User avatar">
+          </div>
+          <div class="profile-name">Taiwo Rahimat</div>
+          <div class="profile-role">Data Analyst</div>
+          <div class="profile-email">Rahimattaiwo@gmail.com</div>
+        </div>
+
+        <div class="profile-form-card">
+          <div class="tabs">
+            <button class="tab active">Profile</button>
+            <button class="tab">Password</button>
+            <button class="tab">Preferences</button>
+          </div>
+
+          <form class="profile-form" id="profileForm">
+            <label>Full Name
+              <input type="text" name="fullName" value="Taiwo Rahimat">
+            </label>
+
+            <label>Email
+              <input type="email" name="email" value="Rahimattaiwo@gmail.com">
+            </label>
+
+            <label>Phone Number
+              <input type="text" name="phone" value="+234 7070382238">
+            </label>
+
+            <label>State / LGA
+              <input type="text" name="state" value="Kano State">
+            </label>
+
+            <button class="save-btn" type="submit">Save Changes</button>
+          </form>
+
+          <a class="back-btn" href="dashboard.html">Back</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
