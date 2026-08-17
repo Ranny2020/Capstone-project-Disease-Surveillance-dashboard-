@@ -1,0 +1,86 @@
+:root {
+  --primary: #044936;
+  --muted: #cde7d8;
+}
+
+.filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 18px 0 24px;
+}
+
+.filter-input,
+.filter-select,
+.date-input {
+  padding: 10px 14px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  background: #fff;
+  color: #0f1f19;
+  font-size: 0.95rem;
+}
+
+.filter-select { appearance: none; }
+
+.export-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #f6fcf8;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.table-card {
+  background: transparent;
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 2px solid rgba(4,73,54,0.12);
+  padding: 8px;
+}
+
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.table-card th,
+.table-card td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(4,73,54,0.12);
+}
+
+.table-card thead th {
+  background: var(--primary);
+  color: #f6fcf8;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.table-card tbody tr { background: #fff }
+.table-card tbody tr:last-child td { border-bottom: none }
+
+@media (max-width: 640px) {
+  .filter-row { flex-wrap: wrap; gap: 8px; margin-left: 8px; }
+  .filter-input, .filter-select, .date-input { height: 40px; }
+  .export-button { height: 40px; }
+  .table-card table { min-width: 560px; }
+}
+
+.pagination-row { display:flex; gap:10px; justify-content:center; margin-top:18px }
+.page-pill { width:30px; height:30px; border:2px solid var(--primary); background:#fff; color:var(--primary); display:inline-grid; place-items:center; border-radius:6px }
+.page-pill.active { background:var(--primary); color:#fff }
+

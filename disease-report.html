@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disease Report | HealthWatch</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="disease-report.css" />
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+        <a href="disease-report.html" class="sidebar-link active">Disease Report</a>
+        <a href="#" class="sidebar-link">Case Reporting</a>
+        <a href="#" class="sidebar-link">Analytics</a>
+        <a href="#" class="sidebar-link">Interactive Map</a>
+        <a href="#" class="sidebar-link">Health Facilities</a>
+        <a href="#" class="sidebar-link">Health Alerts</a>
+        <a href="#" class="sidebar-link">Users</a>
+        <a href="#" class="sidebar-link">Settings</a>
+      </nav>
+      <a class="logout-button" href="login.html">Log Out</a>
+    </aside>
+
+    <aside class="sidebar-drawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+          <button class="drawer-close" type="button">✕</button>
+        </div>
+        <nav class="drawer-nav">
+          <a href="dashboard.html" class="drawer-link">Dashboard</a>
+          <a href="disease-report.html" class="drawer-link active">Disease Report</a>
+          <a href="#" class="drawer-link">Case Reporting</a>
+          <a href="#" class="drawer-link">Analytics</a>
+          <a href="#" class="drawer-link">Interactive Map</a>
+          <a href="#" class="drawer-link">Health Facilities</a>
+          <a href="#" class="drawer-link">Health Alerts</a>
+          <a href="#" class="drawer-link">Users</a>
+          <a href="#" class="drawer-link">Settings</a>
+        </nav>
+        <a class="logout-button" href="login.html">Log Out</a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <button class="menu-toggle" id="drawerToggle">☰</button>
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="search" placeholder="Search diseases, location" aria-label="Search diseases or location" />
+        </div>
+        <div class="user-card">
+          <div class="user-avatar">TR</div>
+          <div>
+            <p class="user-name">Taiwo Rahimat</p>
+            <p class="user-role">Health Officer</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="dashboard-title">
+        <h1>Disease Reports</h1>
+        <p>View and other reported disease cases</p>
+      </section>
+
+      <div class="filter-row">
+        <input id="filterSearch" class="filter-input" type="search" placeholder="Search diseases, location" />
+        <select id="diseaseSelect" class="filter-select">
+          <option>All Diseases</option>
+        </select>
+        <select id="stateSelect" class="filter-select">
+          <option>All States</option>
+        </select>
+        <input id="dateRange" class="filter-input date-input" type="text" value="" placeholder="DD/MM/YY - DD/MM/YY" />
+        <button id="exportBtn" class="export-button" type="button">Export</button>
+      </div>
+
+      <div class="table-card">
+        <table id="diseaseTable">
+          <thead>
+            <tr>
+              <th>Disease</th>
+              <th>Location</th>
+              <th>Total Cases</th>
+              <th>Active Cases</th>
+              <th>Date Reported</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Malaria</td><td>Kano State</td><td>234</td><td>32</td><td>05/03/25</td><td></td></tr>
+            <tr><td>Typhoid</td><td>Lagos State</td><td>120</td><td>15</td><td>12/04/25</td><td></td></tr>
+            <tr><td>Cholera</td><td>Kwara State</td><td>98</td><td>22</td><td>23/03/2025</td><td></td></tr>
+            <tr><td>Fever</td><td>Kaduna State</td><td>78</td><td>8</td><td>09/04/25</td><td></td></tr>
+            <tr><td>Lassa Fever</td><td>Anambra State</td><td>134</td><td>10</td><td>16/08/2025</td><td></td></tr>
+            <tr><td>Yellow Fever</td><td>Ekiti State</td><td>78</td><td>9</td><td>28/11/2025</td><td></td></tr>
+            <tr><td>Measles</td><td>Yobe State</td><td>58</td><td>12</td><td>09/09/2025</td><td></td></tr>
+            <tr><td>Coronavirus</td><td>Abuja</td><td>23</td><td>5</td><td>23/08/2025</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-row">
+        <button class="page-pill">1</button>
+        <button class="page-pill">2</button>
+        <button class="page-pill">3</button>
+        <button class="page-pill">4</button>
+        <button class="page-pill">5</button>
+      </div>
+    </main>
+    </div>
+    <script src="disease-report.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

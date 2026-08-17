@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthWatch Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link active">Dashboard</a>
+        <a href="disease-report.html" class="sidebar-link">Disease Report</a>
+        <a href="#" class="sidebar-link">Case Reporting</a>
+        <a href="#" class="sidebar-link">Analytics</a>
+        <a href="#" class="sidebar-link">Interactive Map</a>
+        <a href="#" class="sidebar-link">Health Facilities</a>
+        <a href="#" class="sidebar-link">Health Alerts</a>
+        <a href="#" class="sidebar-link">Users</a>
+        <a href="#" class="sidebar-link">Settings</a>
+      </nav>
+      <a class="logout-button" href="login.html">Log Out</a>
+    </aside>
+    <aside class="sidebar-drawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+          <button class="drawer-close" type="button">✕</button>
+        </div>
+        <nav class="drawer-nav">
+          <a href="dashboard.html" class="drawer-link active">Dashboard</a>
+          <a href="disease-report.html" class="drawer-link">Disease Report</a>
+          <a href="#" class="drawer-link">Case Reporting</a>
+          <a href="#" class="drawer-link">Analytics</a>
+          <a href="#" class="drawer-link">Interactive Map</a>
+          <a href="#" class="drawer-link">Health Facilities</a>
+          <a href="#" class="drawer-link">Health Alerts</a>
+          <a href="#" class="drawer-link">Users</a>
+          <a href="#" class="drawer-link">Settings</a>
+        </nav>
+        <a class="logout-button" href="login.html">Log Out</a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <button class="menu-toggle" id="drawerToggle">☰</button>
+      </header>
+
+      <div class="top-stack">
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="search" placeholder="Search anything" aria-label="Search anything" />
+        </div>
+
+        <div class="user-card">
+          <div class="user-avatar">TR</div>
+          <div>
+            <p class="user-name">Taiwo Rahimat</p>
+            <p class="user-role">Health Officer</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="dashboard-title">
+        <h1>Dashboard</h1>
+        <p>Overview of disease surveillance and reports</p>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <p class="stat-label">Total Reported cases</p>
+          <p class="stat-value">43,896</p>
+          <p class="stat-meta">20% increase from last week</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Total Suspected Cases</p>
+          <p class="stat-value">33,211</p>
+          <p class="stat-meta">0.0% from last week</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Total Confirmed Cases</p>
+          <p class="stat-value">10,685</p>
+          <p class="stat-meta">+1.6% from last week</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Total Resolved Cases</p>
+          <p class="stat-value">10,286</p>
+          <p class="stat-meta">1.60% from last week</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Deaths</p>
+          <p class="stat-value">398</p>
+          <p class="stat-meta">-0.2% from last week</p>
+        </article>
+      </section>
+
+      <section class="charts-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h2>Cases by Gender</h2>
+            <p> (Estimated distribution of cases by gender)</p>
+          </div>
+            <div class="donut-chart" data-male="520" data-female="416" aria-label="Cases by gender">
+              <div class="donut-center"><span class="donut-total">936</span><br /><span class="donut-label">Total</span></div>
+            </div>
+            <div class="legend-list">
+              <div><span class="legend-color male"></span><span class="legend-text">Male</span> <span class="legend-value">520</span> <span class="legend-percent">[55.6%]</span></div>
+              <div><span class="legend-color female"></span><span class="legend-text">Female</span> <span class="legend-value">416</span> <span class="legend-percent">[44.4%]</span></div>
+            </div>
+        </div>
+
+        <div class="alert-card">
+          <div class="card-header">
+            <h2>Recent Alerts</h2>
+          </div>
+          <div class="alert-table-wrap">
+            <table class="alerts-table">
+              <thead>
+                <tr>
+                  <th>Alerts</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lassa Fever</td>
+                  <td>Active surveillance/response</td>
+                  <td>July 2026</td>
+                </tr>
+                <tr>
+                  <td>Bundibugyo Ebola</td>
+                  <td>National preparedness/alert</td>
+                  <td>28 May 2026</td>
+                </tr>
+                <tr>
+                  <td>Cholera</td>
+                  <td>Public-health surveillance</td>
+                  <td>Ongoing/seasonal</td>
+                </tr>
+                <tr>
+                  <td>Yellow fever</td>
+                  <td>Public-health surveillance</td>
+                  <td>Ongoing/seasonal</td>
+                </tr>
+                <tr>
+                  <td>Dengue fever</td>
+                  <td>Public-health surveillance</td>
+                  <td>Ongoing/seasonal</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <a class="view-alerts" href="https://ncdc.gov.ng/data">View all alerts</a>
+        </div>
+      </section>
+
+      <section class="table-row">
+        <div class="table-card">
+          <h2>Total Diseases</h2>
+          <table>
+            <thead>
+              <tr><th>Diseases</th><th>Suspected cases</th><th>Confirmed Cases</th><th>Trend</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lassa fever</td><td>154</td><td>14</td><td>Low</td></tr>
+              <tr><td>CSM</td><td>4</td><td>0</td><td>Stable</td></tr>
+              <tr><td>Yellow Fever</td><td>1</td><td>0</td><td>Stable</td></tr>
+              <tr><td>Cholera</td><td>139</td><td>130</td><td>High</td></tr>
+              <tr><td>Measles</td><td>27</td><td>0</td><td>Stable</td></tr>
+              <tr><td>Mpox</td><td>3</td><td>1</td><td>Stable</td></tr>
+              <tr><td>AFP</td><td>11</td><td>0</td><td>Stable</td></tr>
+              <tr><td>Covid 19</td><td>4</td><td>0</td><td>Stable</td></tr>
+              <tr><td>Diphtheria</td><td>4</td><td>1</td><td>Stable</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

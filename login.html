@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | HealthWatch</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="page-shell login-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="logo.png" alt="HealthWatch logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how-it-works">How it Works</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="primary-button" href="signup.html">Register</a>
+    </header>
+
+    <main class="login-main">
+      <section class="login-intro">
+        <h1>Welcome Back!</h1>
+        <p>Login to your HealthWatch account.</p>
+      </section>
+
+      <form id="loginForm" class="login-card" action="#" method="post">
+        <label class="input-wrapper">
+          <span class="input-icon">&#9993;</span>
+          <input class="text-input" type="email" name="email" placeholder="Email" required />
+        </label>
+
+        <label class="input-wrapper">
+          <span class="input-icon">&#128274;</span>
+          <input class="text-input" type="password" name="password" placeholder="Password" required />
+        </label>
+
+        <div class="login-meta">
+          <label class="checkbox-field">
+            <input type="checkbox" name="remember" />
+            <span>Remember me</span>
+          </label>
+          <a class="link-secondary" href="forgot-password.html">Forgot Password?</a>
+        </div>
+
+        <button class="primary-button form-submit" type="submit">Login</button>
+
+        <div class="login-divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="social-row">
+          <a class="google-login-button" href="https://accounts.google.com/signin" target="_blank" rel="noreferrer noopener">
+            <span class="google-logo">G</span>
+            Continue with Google
+          </a>
+        </div>
+
+        <p class="existing-account">
+          Don’t have an account? <a href="signup.html">Register</a>
+        </p>
+      </form>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
