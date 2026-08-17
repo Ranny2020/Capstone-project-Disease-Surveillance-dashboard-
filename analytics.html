@@ -161,10 +161,15 @@
         // choose color set based on number of segments
         const colors = vals.length<=3 ? colorSets.gender : colorSets.age;
 
-        const size = 160;
-        const radius = 60;
-        const stroke = 20;
-        const cx = size/2, cy = size/2;
+        // compute size from element so larger cards produce larger donuts
+        const rect = el.getBoundingClientRect();
+        let size = Math.min(rect.width || el.clientWidth, rect.height || el.clientHeight) || 160;
+        // fallback sizes for known classes
+        if (size < 100) size = el.classList.contains('big') ? 200 : (el.classList.contains('small') ? 140 : 160);
+        // stroke proportional to size for balanced look
+        const stroke = Math.max(12, Math.round(size * 0.12));
+        const radius = Math.round((size - stroke) / 2);
+        const cx = size / 2, cy = size / 2;
         const circumference = 2 * Math.PI * radius;
 
         const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -193,7 +198,7 @@
 
         // center hole
         const hole = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        hole.setAttribute('r', radius - stroke/2);
+        hole.setAttribute('r', Math.max(8, radius - Math.round(stroke/2)));
         hole.setAttribute('cx', cx);
         hole.setAttribute('cy', cy);
         hole.setAttribute('fill','#fff');

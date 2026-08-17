@@ -25,9 +25,68 @@
 
 .top-cards { margin-bottom: 18px; }
 .top-row { display:flex; gap:18px; align-items:flex-start; }
+.top-row { display:flex; gap:18px; align-items:flex-start; }
 .top-row .large-chart { flex:1; }
 .donut-card-wrap { display:flex; gap:18px; align-items:flex-start; }
 .donut-card { width:280px; }
+
+/* Desktop: make the first donut card (Age Group) wider so labels wrap cleanly */
+@media (min-width: 921px) {
+  .donut-card-wrap .donut-card:first-child {
+    width: 480px;
+    min-width: 420px;
+  }
+
+  /* enlarge donut inside the wider card for better balance */
+  .donut-card:first-child .donut.big {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* allow legend items to wrap instead of overflowing */
+  .donut-legend { max-width: calc(100% - 220px); }
+  .donut-legend div { white-space: normal; word-break: break-word; }
+  
+  /* place the title at the top of the age-group card */
+  .donut-card-wrap .donut-card:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
+  }
+
+  .donut-card-wrap .donut-card:first-child h3 {
+    align-self: flex-start;
+    margin: 4px 0 12px 8px;
+  }
+
+  .donut-card-wrap .donut-card:first-child .donut-legend {
+    margin-top: 12px;
+    align-self: flex-start;
+  }
+}
+
+/* Make the Gender donut container wider on desktop and ensure contents fit */
+@media (min-width: 921px) {
+  .donut-card-wrap .donut-card:last-child {
+    width: 360px;
+    min-width: 320px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+  }
+
+  .donut-card-wrap .donut-card:last-child h3 { align-self: flex-start; margin: 4px 0 12px 8px; }
+
+  .donut-card:last-child .donut.big {
+    width: 180px;
+    height: 180px;
+  }
+
+  .donut-card:last-child .donut-legend { max-width: calc(100% - 200px); margin-top: 10px; align-self: flex-start; }
+}
 
 .right-column { display:flex; flex-direction:column; gap:18px; }
 .right-column .chart { width:100%; }
