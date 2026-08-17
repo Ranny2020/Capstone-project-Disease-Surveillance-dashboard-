@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account | HealthWatch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="page-shell signup-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="logo.png" alt="HealthWatch logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how-it-works">How it Works</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="primary-button" href="index.html">Back</a>
+    </header>
+
+    <main class="signup-main">
+      <section class="signup-intro">
+        <h1>CREATE YOUR ACCOUNT</h1>
+        <p>Join HealthWatch to start monitoring public health in your community.</p>
+      </section>
+
+      <form id="signupForm" class="signup-grid" action="#" method="post">
+        <div class="signup-card signup-card-left">
+          <label class="input-wrapper">
+            <span class="input-icon">&#128100;</span>
+            <input class="text-input" type="text" name="fullName" placeholder="Full Name" required />
+          </label>
+          <label class="input-wrapper">
+            <span class="input-icon">&#9993;</span>
+            <input class="text-input" type="email" name="email" placeholder="Email" required />
+          </label>
+          <label class="input-wrapper">
+            <span class="input-icon">&#128241;</span>
+            <input class="text-input" type="tel" name="phone" placeholder="Phone Number" required />
+          </label>
+          <label class="input-wrapper">
+            <span class="input-icon">&#127973;</span>
+            <input class="text-input" type="text" name="organization" placeholder="Organization / Health Facilities" />
+          </label>
+          <label class="input-wrapper">
+            <select class="select-input" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="official">Public Health Official</option>
+              <option value="analyst">Data Analyst</option>
+              <option value="manager">Program Manager</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label class="input-wrapper">
+            <select class="select-input" name="state" required>
+              <option value="" disabled selected>Select state</option>
+              <option value="state1">Abuja</option>
+              <option value="state2">Lagos</option>
+              <option value="state3">Sokoto</option>
+                <option value="state4">Kano</option>
+                <option value="state5">Kaduna</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="signup-card signup-card-right">
+          <label class="input-wrapper">
+            <span class="input-icon">&#128274;</span>
+            <input class="text-input" type="password" name="password" placeholder="Password" required />
+          </label>
+          <label class="input-wrapper">
+            <span class="input-icon">&#128274;</span>
+            <input class="text-input" type="password" name="confirmPassword" placeholder="Confirm Password" required />
+          </label>
+          <label class="checkbox-field">
+            <input type="checkbox" name="terms" required />
+            <span>I agree to the <a href="#">Terms of service</a></span>
+          </label>
+          <button class="primary-button form-submit" type="submit">Create Account</button>
+          <p class="existing-account">Already have an account? <a href="login.html">Login</a></p>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
