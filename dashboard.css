@@ -371,8 +371,8 @@ body {
   margin-right: 10px;
 }
 
-.legend-color.male { background: #6f9df8; }
-.legend-color.female { background: #6cc68a; }
+.legend-color.male { background: #153066; }
+.legend-color.female { background: #facd50; }
 .legend-color.children { background: #f4db7d; }
 .legend-color.unknown { background: #ef9898; }
 
