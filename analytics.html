@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics | HealthWatch</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="analytics.css" />
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" />
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+        <a href="disease-report.html" class="sidebar-link">Disease Report</a>
+        <a href="#" class="sidebar-link">Case Reporting</a>
+        <a href="analytics.html" class="sidebar-link active">Analytics</a>
+        <a href="#" class="sidebar-link">Interactive Map</a>
+        <a href="#" class="sidebar-link">Health Facilities</a>
+        <a href="#" class="sidebar-link">Health Alerts</a>
+        <a href="#" class="sidebar-link">Users</a>
+        <a href="#" class="sidebar-link">Settings</a>
+      </nav>
+      <a class="logout-button" href="login.html">Log Out</a>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <button class="menu-toggle" id="drawerToggle">☰</button>
+      </header>
+
+      <section class="analytics-header">
+        <div class="title-block">
+          <h1>Analytics</h1>
+          <p>Detailed analytics of the disease data</p>
+        </div>
+        <div class="filters">
+          <select aria-label="Timeframe" class="filter-select"><option>This Year</option><option>This Month</option></select>
+          <select aria-label="Disease" class="filter-select"><option>All Diseases</option></select>
+        </div>
+      </section>
+
+      <section class="top-cards">
+        <div class="top-row">
+          <div class="chart large-chart">
+            <h3>Monthly Cases</h3>
+            <div class="bar-chart" aria-hidden="true">
+              <div class="bar" style="height:52%"><span>Jan</span></div>
+              <div class="bar" style="height:38%"><span>Feb</span></div>
+              <div class="bar" style="height:72%"><span>Mar</span></div>
+              <div class="bar" style="height:80%"><span>Apr</span></div>
+              <div class="bar" style="height:92%"><span>May</span></div>
+              <div class="bar" style="height:50%"><span>Jun</span></div>
+              <div class="bar" style="height:36%"><span>Jul</span></div>
+              <div class="bar" style="height:28%"><span>Aug</span></div>
+            </div>
+          </div>
+
+          <div class="donut-card-wrap">
+            <div class="donut-card">
+              <h3>Cases by Age Group</h3>
+              <div class="donut big" data-total="12,416" style="--p1:15; --p2:20; --p3:25; --p4:20; --p5:20"></div>
+              <div class="donut-legend">
+                <div><span class="swatch a1"></span>0-15</div>
+                <div><span class="swatch a2"></span>16-25</div>
+                <div><span class="swatch a3"></span>26-35</div>
+                <div><span class="swatch a4"></span>36-50</div>
+                <div><span class="swatch a5"></span>51-75</div>
+              </div>
+            </div>
+
+            <div class="donut-card">
+              <h3>Cases by Gender</h3>
+              <div class="donut big" data-total="12,458" style="--p1:40; --p2:35; --p3:25"></div>
+              <div class="donut-legend">
+                <div><span class="swatch g1"></span>Male</div>
+                <div><span class="swatch g2"></span>Female</div>
+                <div><span class="swatch g3"></span>Unknown</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="analytics-grid">
+        <div class="right-column">
+          <div class="chart table-card">
+            <h3>Most Affected Locations</h3>
+            <div class="locations">
+              <div class="loc"><div class="loc-name">Kano State</div><div class="loc-bar"><div class="progress" style="width:88%"></div></div><div class="loc-count">1,245</div></div>
+              <div class="loc"><div class="loc-name">Lagos State</div><div class="loc-bar"><div class="progress" style="width:85%"></div></div><div class="loc-count">1,202</div></div>
+              <div class="loc"><div class="loc-name">Rivers State</div><div class="loc-bar"><div class="progress" style="width:60%"></div></div><div class="loc-count">900</div></div>
+              <div class="loc"><div class="loc-name">Yobe State</div><div class="loc-bar"><div class="progress" style="width:50%"></div></div><div class="loc-count">765</div></div>
+              <div class="loc"><div class="loc-name">Kaduna State</div><div class="loc-bar"><div class="progress" style="width:40%"></div></div><div class="loc-count">640</div></div>
+            </div>
+          </div>
+
+          <div class="chart pie-card">
+            <h3>Cases by Diseases</h3>
+            <div class="pie-row">
+              <div class="pie"></div>
+              <ul class="legend side-legend">
+                <li><span class="swatch sw1"></span>Malaria <strong>42.7%</strong></li>
+                <li><span class="swatch sw2"></span>Typhoid <strong>18.7%</strong></li>
+                <li><span class="swatch sw3"></span>Cholera <strong>14.2%</strong></li>
+                <li><span class="swatch sw4"></span>Covid 19 <strong>23.0%</strong></li>
+                <li><span class="swatch sw5"></span>Others <strong>28.9%</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Render SVG donuts from CSS vars (ensures consistent rendering across browsers)
+    (function renderDonuts(){
+      const colorSets = {
+        age: ['#f15b5b','#f4c542','#3f9f72','#6f9df8','#d3b4f3'],
+        gender: ['#2f7f66','#6cc68a','#9b7be6']
+      };
+
+      document.querySelectorAll('.donut').forEach((el, idx) => {
+        const style = getComputedStyle(el);
+        // collect up to 6 vars
+        const vals = [];
+        for(let i=1;i<=6;i++){
+          const v = style.getPropertyValue('--p'+i).trim();
+          if(!v) break;
+          const n = Number(v.replace('%',''));
+          if(!isNaN(n) && n>0) vals.push(n);
+        }
+        if(vals.length===0) return;
+
+        // choose color set based on number of segments
+        const colors = vals.length<=3 ? colorSets.gender : colorSets.age;
+
+        const size = 160;
+        const radius = 60;
+        const stroke = 20;
+        const cx = size/2, cy = size/2;
+        const circumference = 2 * Math.PI * radius;
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+        svg.setAttribute('width', size);
+        svg.setAttribute('height', size);
+        svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+        svg.style.display = 'block';
+
+        let cumulative = 0;
+        vals.forEach((pct, i)=>{
+          const seg = document.createElementNS('http://www.w3.org/2000/svg','circle');
+          seg.setAttribute('r', radius);
+          seg.setAttribute('cx', cx);
+          seg.setAttribute('cy', cy);
+          seg.setAttribute('fill','none');
+          seg.setAttribute('stroke', colors[i % colors.length] || '#ccc');
+          seg.setAttribute('stroke-width', stroke);
+          const segLen = (pct/100) * circumference;
+          seg.setAttribute('stroke-dasharray', `${segLen} ${circumference}`);
+          const offset = -(cumulative/100) * circumference;
+          seg.setAttribute('stroke-dashoffset', offset);
+          seg.setAttribute('transform', `rotate(-90 ${cx} ${cy})`);
+          svg.appendChild(seg);
+          cumulative += pct;
+        });
+
+        // center hole
+        const hole = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        hole.setAttribute('r', radius - stroke/2);
+        hole.setAttribute('cx', cx);
+        hole.setAttribute('cy', cy);
+        hole.setAttribute('fill','#fff');
+        svg.appendChild(hole);
+
+        // clear previous background and insert SVG
+        el.innerHTML = '';
+        el.appendChild(svg);
+
+        // add center label if present in markup
+        const center = document.createElement('div');
+        center.className = 'donut-center';
+        center.innerHTML = '<strong>'+ (el.dataset.total || '') +'</strong><div class="muted">Total</div>';
+        el.appendChild(center);
+      });
+    })();
+  </script>
+</body>
+</html>
