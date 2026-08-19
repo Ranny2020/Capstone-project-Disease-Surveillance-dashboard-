@@ -1,5 +1,5 @@
-// Backend API URL - default to same origin so deployed backend + frontend work together
-const API_URL = (typeof window !== 'undefined' && window.__API_URL__) ? window.__API_URL__ : (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+// Backend API URL - default to your Render deployment; can be overridden with `window.__API_URL__`
+const API_URL = (typeof window !== 'undefined' && window.__API_URL__) ? window.__API_URL__ : 'https://capstone-project-disease-surveillance.onrender.com';
 
 const buttons = document.querySelectorAll('button.primary-button, button.secondary-button');
 
@@ -97,7 +97,7 @@ async function handleSignupForm() {
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/signup`, {
+      const response = await fetch(`${'https://capstone-backend.onrender.com'}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -131,7 +131,7 @@ async function handleLoginForm() {
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/login`, {
+      const response = await fetch(`${'https://capstone-backend.onrender.com'}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -191,4 +191,121 @@ function renderDonutChart(){
 
 document.addEventListener('DOMContentLoaded', () => {
   renderDonutChart();
+});
+
+// Inline edit handler for health facilities list
+function setupFacilitiesEdit() {
+  const list = document.querySelector('.facility-list');
+  if (!list) return;
+
+  list.addEventListener('click', (e) => {
+    const btn = e.target.closest('.edit-btn');
+    if (!btn) return;
+    const item = btn.closest('.facility-item');
+    if (!item || item.classList.contains('editing')) return;
+    item.classList.add('editing');
+
+    const nameEl = item.querySelector('.facility-name');
+    const subEl = item.querySelector('.facility-sub');
+    const phoneEl = item.querySelector('.facility-phone');
+    const meta = item.querySelector('.facility-meta');
+
+    const original = {
+      name: nameEl ? nameEl.textContent : '',
+      sub: subEl ? subEl.textContent : '',
+      phone: phoneEl ? phoneEl.textContent : ''
+    };
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.className = 'edit-name';
+    nameInput.value = original.name;
+
+    const subInput = document.createElement('input');
+    subInput.type = 'text';
+    subInput.className = 'edit-sub';
+    subInput.value = original.sub;
+
+    const phoneInput = document.createElement('input');
+    phoneInput.type = 'text';
+    phoneInput.className = 'edit-phone';
+    phoneInput.value = original.phone;
+
+    if (nameEl) nameEl.replaceWith(nameInput);
+    if (subEl) subEl.replaceWith(subInput);
+    if (phoneEl) phoneEl.replaceWith(phoneInput);
+
+    // hide edit button while editing
+    btn.style.display = 'none';
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'save-btn primary-button';
+    saveBtn.type = 'button';
+    saveBtn.textContent = 'Save';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'cancel-btn secondary-button';
+    cancelBtn.type = 'button';
+    cancelBtn.textContent = 'Cancel';
+
+    const controls = document.createElement('div');
+    controls.className = 'edit-controls';
+    controls.appendChild(saveBtn);
+    controls.appendChild(cancelBtn);
+    meta.appendChild(controls);
+
+    saveBtn.addEventListener('click', () => {
+      const newName = nameInput.value.trim() || original.name;
+      const newSub = subInput.value.trim() || original.sub;
+      const newPhone = phoneInput.value.trim() || original.phone;
+
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'facility-name';
+      nameDiv.textContent = newName;
+
+      const subDiv = document.createElement('div');
+      subDiv.className = 'facility-sub';
+      subDiv.textContent = newSub;
+
+      const phoneDiv = document.createElement('div');
+      phoneDiv.className = 'facility-phone';
+      phoneDiv.textContent = newPhone;
+
+      nameInput.replaceWith(nameDiv);
+      subInput.replaceWith(subDiv);
+      phoneInput.replaceWith(phoneDiv);
+
+      controls.remove();
+      btn.style.display = '';
+      item.classList.remove('editing');
+
+      // Optional: send update to backend here
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'facility-name';
+      nameDiv.textContent = original.name;
+
+      const subDiv = document.createElement('div');
+      subDiv.className = 'facility-sub';
+      subDiv.textContent = original.sub;
+
+      const phoneDiv = document.createElement('div');
+      phoneDiv.className = 'facility-phone';
+      phoneDiv.textContent = original.phone;
+
+      nameInput.replaceWith(nameDiv);
+      subInput.replaceWith(subDiv);
+      phoneInput.replaceWith(phoneDiv);
+
+      controls.remove();
+      btn.style.display = '';
+      item.classList.remove('editing');
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupFacilitiesEdit();
 });
