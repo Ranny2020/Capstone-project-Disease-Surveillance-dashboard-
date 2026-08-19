@@ -309,3 +309,19 @@ function setupFacilitiesEdit() {
 document.addEventListener('DOMContentLoaded', () => {
   setupFacilitiesEdit();
 });
+
+// Open external info pages when an Info badge is clicked
+function setupInfoBadges() {
+  document.addEventListener('click', (e) => {
+    const badge = e.target.closest('.badge.info');
+    if (!badge) return;
+    const url = badge.getAttribute('data-info-url');
+    if (!url) return;
+    // open in a new tab
+    window.open(url, '_blank', 'noopener');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupInfoBadges();
+});
