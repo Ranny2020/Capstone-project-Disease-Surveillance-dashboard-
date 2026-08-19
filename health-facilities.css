@@ -41,3 +41,25 @@
   .facility-phone{display:none}
   .facility-meta{align-items:flex-end}
 }
+
+/* Edit mode styles for inline editing */
+.facility-item.editing{align-items:flex-start}
+.facility-item.editing .facility-info{width:100%}
+.facility-item.editing .facility-meta{width:100%;align-items:flex-start;margin-top:8px}
+
+.edit-name,.edit-sub,.edit-phone{display:block;width:100%;box-sizing:border-box;padding:8px;border-radius:6px;border:1px solid #cde7d8;margin:4px 0;font-size:1rem}
+.edit-controls{display:flex;gap:8px}
+.save-btn{background:#044936;color:#fff;padding:8px 12px;border-radius:6px;border:none;font-weight:700;cursor:pointer}
+.cancel-btn{background:transparent;border:1px solid rgba(4,73,54,0.12);padding:8px 12px;border-radius:6px;color:#044936;cursor:pointer}
+
+@media (max-width:640px){
+  .facility-item.editing{flex-direction:column;align-items:flex-start}
+  .edit-controls{flex-direction:row;width:100%}
+  .save-btn,.cancel-btn{flex:1}
+}
+
+@media (max-width:420px){
+  .facility-item.editing{padding:10px}
+  .edit-controls{flex-direction:column}
+  .save-btn,.cancel-btn{width:100%}
+}
