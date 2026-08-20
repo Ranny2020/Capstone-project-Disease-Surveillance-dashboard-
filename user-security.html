@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account & Security</title>
+    <link rel="stylesheet" href="user-security.css" />
+  </head>
+  <body>
+    <main class="security-page">
+      <header class="top-row">
+        <div class="page-title-wrap">
+          <h1>Account &amp; Security</h1>
+          <p>Manage your account security<br />and Login Preferences.</p>
+        </div>
+
+        <nav class="tabs" aria-label="Profile navigation">
+          <button class="nav-tab" type="button"><a href="user-profile.html">Profile</a></button>
+          <button class="nav-tab active" type="button">Account &amp; Security</button>
+          <button class="nav-tab" type="button">Preferences</button>
+          <button class="nav-tab" type="button">Notification</button>
+        </nav>
+      </header>
+
+      <section class="content-grid">
+        <aside class="profile-card" aria-label="User profile summary">
+          <div class="photo-frame">
+            <img src="nene.jpeg" alt="Taiwo Rahimat portrait" />
+          </div>
+          <h2>Taiwo Rahimat</h2>
+          <div class="role">Data Analyst</div>
+          <div class="email">Rahimattaiwo@gmail.com</div>
+        </aside>
+
+        <section class="security-panel" aria-label="Security settings">
+          <div class="setting-row">
+            <div class="setting-copy">
+              <h3>Email Address</h3>
+              <span>rahimattaiwo@gmail.com</span>
+            </div>
+            <button type="button" class="green-btn" data-message="Change successful: your email address has been updated.">Change</button>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-copy">
+              <h3>Password</h3>
+              <span>****************</span>
+            </div>
+            <button type="button" class="green-btn" data-message="Change successful: your password has been updated.">Change</button>
+          </div>
+
+          <div class="setting-row toggle-row">
+            <div class="setting-copy">
+              <h3>Two-Factor Authentication</h3>
+              <span>Add an extra layer of security to your account</span>
+            </div>
+            <label class="switch" aria-label="Toggle two-factor authentication">
+              <input type="checkbox" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row compact-row">
+            <div class="setting-copy">
+              <h3>Active Sessions</h3>
+              <span>Manage your active sessions on other devices</span>
+            </div>
+            <button type="button" class="green-btn" data-href="security-document.html#active-sessions">View</button>
+          </div>
+
+          <div class="setting-row compact-row last-row">
+            <div class="setting-copy">
+              <h3>Login History</h3>
+              <span>See recent login activity on your account</span>
+            </div>
+            <button type="button" class="green-btn" data-href="security-document.html#login-history">View</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="back-wrap">
+        <a href="dashboard.html" class="back-btn">Back</a>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.green-btn').forEach((button) => {
+          button.addEventListener('click', () => {
+            const message = button.dataset.message;
+            const target = button.dataset.href;
+
+            if (message) {
+              alert(message);
+            }
+
+            if (target) {
+              window.location.href = target;
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
