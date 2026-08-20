@@ -370,9 +370,17 @@ body {
 
   .green-btn,
   .back-btn {
+    padding: 14px 18px;
+  }
+
+  .green-btn {
     width: 100%;
     min-width: 0;
-    padding: 14px 18px;
+  }
+
+  .back-btn {
+    width: auto;
+    min-width: 140px;
   }
 
   .switch {
