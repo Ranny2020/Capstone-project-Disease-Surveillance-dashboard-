@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences</title>
+
+    <link rel="stylesheet" href="user-preferences.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <h1>Preferences</h1>
+            <p>Customize your application experience</p>
+        </div>
+
+
+        <div class="content-wrapper">
+
+            <!-- =========================
+                 PROFILE CARD
+            ========================== -->
+
+            <aside class="profile-card">
+
+                <div class="profile-image-wrapper">
+                    <img
+                        src="nene.jpeg"
+                        alt="Taiwo Rahimat"
+                        class="profile-image"
+                    >
+                </div>
+
+                <h2>Taiwo Rahimat</h2>
+
+                <p class="profile-role">Data Analyst</p>
+
+                <p class="profile-email">
+                    Rahimattaiwo@gmail.com
+                </p>
+
+            </aside>
+
+
+            <!-- =========================
+                 SETTINGS AREA
+            ========================== -->
+
+            <section class="settings">
+
+                <!-- TABS -->
+                <nav class="tabs" aria-label="Profile navigation">
+          <button class="nav-tab" type="button"><a href="user-profile.html">Profile</a></button>
+          <button class="nav-tab" type="button"><a href="user-security.html">Account &amp; Security</a></button>
+          <button class="nav-tab active" type="button">Preferences</button>
+          <button class="nav-tab" type="button">Notification</button>
+        </nav>
+
+
+                <!-- =========================
+                     PREFERENCES CONTENT
+                ========================== -->
+
+                <div class="tab-content active" id="preferences">
+
+                    <!-- LANGUAGE -->
+                    <div class="form-group">
+
+                        <label for="language">
+                            Language
+                        </label>
+
+                        <div class="select-wrapper">
+                            <select id="language">
+                                <option>English</option>
+                                <option>Hausa</option>
+                                <option>French</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATE FORMAT -->
+                    <div class="form-group">
+
+                        <label for="date-format">
+                            Date Format
+                        </label>
+
+                        <div class="select-wrapper">
+                            <select id="date-format">
+                                <option>DD/MM/YYYY</option>
+                                <option>MM/DD/YYYY</option>
+                                <option>YYYY/MM/DD</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIME ZONE -->
+                    <div class="form-group">
+
+                        <label for="timezone">
+                            Time Zone
+                        </label>
+
+                        <div class="select-wrapper">
+                            <select id="timezone">
+                                <option>
+                                    (GMT +01:00) West Africa Time
+                                </option>
+
+                                <option>
+                                    (GMT +00:00) Greenwich Mean Time
+                                </option>
+
+                                <option>
+                                    (GMT +02:00) Central Africa Time
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <!-- THEME -->
+                    <div class="form-group theme-group">
+
+                        <label>
+                            Theme
+                        </label>
+
+                        <div class="theme-options">
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="theme"
+                                    value="light"
+                                    checked
+                                >
+
+                                <span class="custom-radio"></span>
+
+                                <span>Light</span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="theme"
+                                    value="dark"
+                                >
+
+                                <span class="custom-radio"></span>
+
+                                <span>Dark</span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL NOTIFICATION -->
+                    <div class="notification-card">
+
+                        <div class="notification-text">
+
+                            <h3>Email Notifications</h3>
+
+                            <p>
+                                Receive email alerts and updates
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="email-notification"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- SMS NOTIFICATION -->
+                    <div class="notification-card">
+
+                        <div class="notification-text">
+
+                            <h3>SMS Notifications</h3>
+
+                            <p>
+                                Receive SMS alerts for important updates
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="sms-notification"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="settings-actions">
+                        <button class="save-button" type="button" id="savePreferences">
+                            Save Preferences
+                        </button>
+
+                        <button class="back-button" type="button" onclick="window.location.href='user-profile.html'">
+                            Back
+                        </button>
+                    </div>
+
+                </div>
+
+    </main>
+
+
+    <script src="scriptt.js"></script>
+
+</body>
+</html>

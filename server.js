@@ -15,6 +15,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
+// Explicit root route to serve the frontend index (helps some hosts return Not Found otherwise)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 async function ensureDataFile() {
   try {
     await fs.access(dataFile);
@@ -166,6 +171,11 @@ app.post('/api/login', async (req, res) => {
   }
 
   res.json({ message: 'Login successful.' });
+});
+
+// Health check endpoint for diagnostics
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 app.listen(port, '0.0.0.0', () => {

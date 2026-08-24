@@ -23,6 +23,7 @@
 .back-btn{display:inline-block;margin-top:12px;background:#fff;border:1px solid #044936;color:#044936;padding:10px 14px;border-radius:8px;text-decoration:none}
 a{
   text-decoration:none;
+  color:rgb(4, 37, 4);
 }
 /* Responsive */
 @media (max-width: 920px){
