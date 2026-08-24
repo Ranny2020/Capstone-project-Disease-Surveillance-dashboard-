@@ -639,78 +639,120 @@ body.dark-mode .back-button {
 
 @media (max-width: 500px) {
 
+   /* Compact overall spacing */
    .page {
-       padding: 25px 15px;
+       padding: 18px 12px;
    }
 
    .page-header h1 {
-       font-size: 28px;
+       font-size: 22px;
    }
 
    .page-header p {
-       font-size: 15px;
+       font-size: 13px;
    }
 
+   /* Profile card compact */
    .profile-card h2 {
-       font-size: 25px;
+       font-size: 20px;
    }
 
    .profile-role {
-       font-size: 18px;
+       font-size: 14px;
    }
 
    .profile-email {
-       font-size: 15px;
+       font-size: 13px;
+   }
+
+   .profile-image-wrapper,
+   .profile-image {
+       width: 160px;
+       height: 180px;
+   }
+
+   /* Form and controls */
+   .form-group {
+       margin-top: 18px;
+       margin-bottom: 18px;
    }
 
    .form-group label {
-       font-size: 17px;
-    }
-
-   .select-wrapper select {
        font-size: 15px;
    }
 
+   .select-wrapper select {
+       font-size: 14px;
+       height: 40px;
+       padding-left: 10px;
+   }
+
    .theme-options {
-       justify-content: space-between;
-       gap: 0;
-    }
+       gap: 28px;
+       padding-left: 0;
+   }
 
    .custom-radio {
-       width: 38px;
-       height: 38px;
+       width: 30px;
+       height: 30px;
    }
 
    .radio-option input:checked + .custom-radio::after {
-       width: 21px;
-       height: 21px;
+       width: 14px;
+       height: 14px;
    }
 
    .notification-card {
-       align-items: center;
+       padding: 8px 10px;
+       min-height: 60px;
    }
 
    .notification-text h3 {
-       font-size: 16px;
+       font-size: 15px;
    }
 
    .notification-text p {
-       font-size: 14px;
-       line-height: 1.4;
+       font-size: 13px;
+       line-height: 1.3;
    }
 
+   /* Keep actions on one line: small Back on left, Save expands */
    .settings-actions {
-       gap: 10px;
-   }
-
-   .save-button {
-       font-size: 16px;
-       height: 44px;
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+       gap: 8px;
+       margin-top: 12px;
    }
 
    .back-button {
-       width: 82px;
+       width: 72px;
        height: 36px;
-       font-size: 0.85rem;
+       font-size: 0.82rem;
+       padding: 6px 8px;
+       border-radius: 8px;
+       flex: 0 0 auto;
    }
+
+   .save-button {
+       flex: 1 1 auto;
+       height: 42px;
+       font-size: 0.96rem;
+       border-radius: 8px;
+   }
+
+}
+
+/* Extra-tight small phones */
+@media (max-width: 360px) {
+   .page { padding: 14px 10px; }
+   .page-header h1 { font-size: 20px; }
+   .page-header p { font-size: 12px; }
+   .profile-image-wrapper, .profile-image { width: 140px; height: 160px; }
+   .profile-card h2 { font-size: 18px; }
+   .profile-role { font-size: 13px; }
+   .form-group label { font-size: 14px; }
+   .select-wrapper select { font-size: 13px; height: 38px; }
+   .save-button { height: 40px; font-size: 0.92rem; }
+   .back-button { width: 66px; height: 34px; font-size: 0.8rem; }
 }
