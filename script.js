@@ -97,7 +97,7 @@ async function handleSignupForm() {
     };
 
     try {
-      const response = await fetch(`${'https://capstone-backend.onrender.com'}/api/signup`, {
+      const response = await fetch(`${'https://capstone-project-disease-surveillance.onrender.com'}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -131,7 +131,7 @@ async function handleLoginForm() {
     };
 
     try {
-      const response = await fetch(`${'https://capstone-backend.onrender.com'}/api/login`, {
+      const response = await fetch(`${'https://capstone-project-disease-surveillance.onrender.com'}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
