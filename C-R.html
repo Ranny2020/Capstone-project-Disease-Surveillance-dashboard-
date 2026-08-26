@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthWatch | Case Reporting</title>
+  <link rel="stylesheet" href="c.r.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="logo-wrap"><img src="logo.png" alt="HealthWatch"></div>
+    <nav>
+      <a href="dashboard.html"><span>Dashboard</span></a>
+      <a href="disease-report.html"><span>Disease Report</span></a>
+      <a class="active" href="case-reporting.html"><span>Case Reporting</span></a>
+      <a href="analytics.html"><span>Analytics</span></a>
+      <a href="interactive-map.html"><span>interactive map</span></a>
+      <a href="health-facilities.html"><span>Health Facilities</span></a>
+      <a href="health-alerts.html"><span>Health Alerts</span></a>
+      <a href="users.html"><span>Users</span></a>
+      <a href="settings.html"><span>Settings</span></a>
+    </nav>
+    <div class="logout"><button>↪ <span>Log Out</span></button></div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main class="main">
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+
+    <header class="header">
+      <div>
+        <h1>Case Reporting</h1>
+        <p>Report and manage diseases from your community</p>
+      </div>
+      <button class="add-btn" id="addBtn">Add New Report</button>
+    </header>
+
+    <section class="stats">
+      <article><span>Total Reports</span><strong>497</strong></article>
+      <article><span>Suspected cases</span><strong>351</strong></article>
+      <article class="confirmed"><span>confirmed</span><strong>146</strong></article>
+      <article class="death"><span>Death Cases</span><strong>0</strong></article>
+    </section>
+
+    <section class="filters">
+      <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search Reports"></label>
+      <select id="disease"><option>All Disease</option><option>Lassa Fever</option><option>Measles</option><option>Cholera</option><option>COVID-19</option></select>
+      <select id="state"><option>All States</option><option>Kano</option><option>Kaduna</option><option>Lagos</option><option>Kwara</option><option>Multiple states / LGAs</option></select>
+      <select><option>This Month</option><option>This Week</option><option>All Time</option></select>
+      <button class="filter-btn" id="filterBtn">▼ <span>Filter</span></button>
+    </section>
+
+    <section class="table-card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Report ID</th><th>Disease</th><th>Location</th><th>Reported by</th><th>Date Reported</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="mobile-cards" id="mobileCards"></div>
+    </section>
+
+    <footer class="pagination">
+      <span id="count">Showing 1 to 4 of 497 reports</span>
+      <div>
+        <button>‹</button><button class="selected">1</button><button>2</button><button>3</button><button class="dots">…</button><button>493</button><button>›</button>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="close" id="close">×</button>
+      <h2>Add New Report</h2>
+      <form id="form">
+        <label>Disease<select required><option value="">Select disease</option><option>Lassa Fever</option><option>Measles</option><option>Cholera</option><option>COVID-19</option></select></label>
+        <label>Location<input required placeholder="Location"></label>
+        <label>Reported by<input required placeholder="Reporter"></label>
+        <label>Date Reported<input required type="date"></label>
+        <label>Status<select><option>Reported</option><option>Confirmed cases reported</option><option>Under Investigation</option></select></label>
+        <label>Action<input required placeholder="Action"></label>
+        <button class="add-btn" type="submit">Save Report</button>
+      </form>
+    </div>
+  </div>
+  <script src="case.js"></script>
+</body>
+</html>
