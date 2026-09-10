@@ -1,5 +1,5 @@
 // Backend API URL - default to your Render deployment; can be overridden with `window.__API_URL__`
-const API_URL = (typeof window !== 'undefined' && window.__API_URL__) ? window.__API_URL__ : 'https://capstone-project-disease-surveillance.onrender.com';
+const API_URL = (typeof window !== 'undefined' && window.__API_URL__) ? window.__API_URL__ : 'https://dashboard.render.com/web/srv-da1ca19t0dsc73bhd470';
 
 const buttons = document.querySelectorAll('button.primary-button, button.secondary-button');
 
@@ -97,7 +97,7 @@ async function handleSignupForm() {
     };
 
     try {
-      const response = await fetch(`${'https://capstone-project-disease-surveillance.onrender.com'}/api/signup`, {
+      const response = await fetch(`${'https://dashboard.render.com/web/srv-da1ca19t0dsc73bhd470', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
