@@ -1,4 +1,4 @@
-const reports = [
+const defaultReports = [
   {
     id: "NCDC-LF-W30-2026",
     disease: "Lassa Fever",
@@ -37,9 +37,37 @@ const reports = [
   }
 ];
 
+const key = 'healthwatchReports';
+const reports = JSON.parse(localStorage.getItem(key) || 'null') || defaultReports;
+
 const rows = document.querySelector("#rows");
 const mobileCards = document.querySelector("#mobileCards");
 const count = document.querySelector("#count");
+const diseaseSelect = document.querySelector("#disease");
+const stateSelect = document.querySelector("#state");
+const searchInputs = Array.from(document.querySelectorAll("#search, #searchSecondary"));
+
+function saveReports(list) {
+  localStorage.setItem(key, JSON.stringify(list));
+}
+
+function populateFilters() {
+  if (!diseaseSelect) return;
+
+  const diseases = [...new Set(reports.map(report => report.disease))];
+  diseaseSelect.innerHTML = [
+    '<option value="All Disease">All Disease</option>',
+    ...diseases.map(disease => `<option value="${disease}">${disease}</option>`)
+  ].join('');
+
+  if (!stateSelect) return;
+
+  const states = [...new Set(reports.map(report => report.location))];
+  stateSelect.innerHTML = [
+    '<option value="All States">All States</option>',
+    ...states.map(state => `<option value="${state}">${state}</option>`)
+  ].join('');
+}
 
 function render(data) {
   rows.innerHTML = "";
@@ -72,65 +100,38 @@ function render(data) {
 }
 
 function filterReports() {
+  const search = searchInputs
+    .map(input => input.value.trim().toLowerCase())
+    .filter(Boolean)
+    .join(' ');
 
-  const search =
-    document.querySelector("#search")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const disease =
-    document.querySelector("#disease").value;
-
-  const state =
-    document.querySelector("#state").value;
+  const disease = diseaseSelect ? diseaseSelect.value : 'All Disease';
+  const state = stateSelect ? stateSelect.value : 'All States';
 
   const filtered = reports.filter(report => {
+    const searchable = Object.values(report).join(' ').toLowerCase();
+    const matchesSearch = search === '' || searchable.includes(search);
+    const matchesDisease = disease === 'All Disease' || report.disease === disease;
+    const matchesState = state === 'All States' || report.location === state;
 
-    const searchable =
-      Object.values(report)
-        .join(" ")
-        .toLowerCase();
-
-    const matchesSearch =
-      search === "" ||
-      searchable.includes(search);
-
-    const matchesDisease =
-      disease === "All Disease" ||
-      report.disease === disease;
-
-    const matchesState =
-      state === "All States" ||
-      report.location === state;
-
-    return (
-      matchesSearch &&
-      matchesDisease &&
-      matchesState
-    );
+    return matchesSearch && matchesDisease && matchesState;
   });
 
   render(filtered);
 }
 
+searchInputs.forEach(input => {
+  input.addEventListener('input', () => {
+    searchInputs.forEach(field => {
+      if (field !== input) field.value = input.value;
+    });
+    filterReports();
+  });
+});
 
-// Search updates immediately as the user types.
-document
-  .querySelector("#search")
-  .addEventListener("input", filterReports);
-
-document
-  .querySelector("#disease")
-  .addEventListener("change", filterReports);
-
-document
-  .querySelector("#state")
-  .addEventListener("change", filterReports);
-
-document
-  .querySelector("#filterBtn")
-  .addEventListener("click", filterReports);
+document.querySelector("#disease")?.addEventListener("change", filterReports);
+document.querySelector("#state")?.addEventListener("change", filterReports);
+document.querySelector("#filterBtn")?.addEventListener("click", filterReports);
 
 
 // Sidebar
@@ -171,10 +172,42 @@ modal.addEventListener("click", event => {
 
 document.querySelector("#form").addEventListener("submit", event => {
   event.preventDefault();
-  alert("Report saved successfully.");
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  const disease = formData.get('disease')?.toString().trim();
+  const location = formData.get('location')?.toString().trim();
+  const reportedBy = formData.get('reportedBy')?.toString().trim();
+  const dateReported = formData.get('dateReported')?.toString().trim();
+  const status = formData.get('status')?.toString().trim() || 'Reported';
+  const action = formData.get('action')?.toString().trim();
+
+  if (!disease || !location || !reportedBy || !dateReported || !action) {
+    alert('Please complete all report fields.');
+    return;
+  }
+
+  const newReport = {
+    id: `NCDC-${disease.slice(0, 3).toUpperCase()}-${Date.now().toString().slice(-6)}`,
+    disease,
+    location,
+    by: reportedBy,
+    date: dateReported,
+    status,
+    action
+  };
+
+  const nextReports = [newReport, ...reports];
+  reports.splice(0, reports.length, ...nextReports);
+  saveReports(reports);
+  populateFilters();
+  render(reports);
+  form.reset();
   modal.classList.remove("show");
+  alert("Report saved successfully.");
 });
 
 
-// Initial state: ALL reports are displayed.
+populateFilters();
 render(reports);

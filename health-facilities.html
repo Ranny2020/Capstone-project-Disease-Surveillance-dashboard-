@@ -64,7 +64,7 @@
           <select class="filter-select" aria-label="State filter">
             <option>All states</option>
           </select>
-          <a class="add-facility" href="#">Add Facility</a>
+          <button type="button" class="add-facility" id="addFacilityBtn">Add Facility</button>
         </div>
       </section>
 
@@ -171,6 +171,37 @@
             </div>
         </div>
       </section>
+
+      <div class="facility-modal hidden" id="facilityModal" role="dialog" aria-modal="true" aria-labelledby="facilityModalTitle">
+        <div class="facility-modal-card">
+          <div class="facility-modal-header">
+            <h2 id="facilityModalTitle">Add Facility</h2>
+            <button type="button" class="modal-close" id="closeFacilityModal" aria-label="Close add facility form">✕</button>
+          </div>
+
+          <form id="facilityForm">
+            <label>
+              Facility Name
+              <input type="text" name="facilityName" placeholder="e.g. General Hospital, Abuja" required>
+            </label>
+
+            <label>
+              State
+              <input type="text" name="facilityState" placeholder="e.g. Kano State" required>
+            </label>
+
+            <label>
+              Phone Number
+              <input type="tel" name="facilityPhone" placeholder="e.g. +234 800 000 0000" required>
+            </label>
+
+            <div class="facility-form-actions">
+              <button type="submit" class="primary-btn">Save Facility</button>
+              <button type="button" class="secondary-btn" id="cancelFacilityModal">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
 
     </main>
   </div>
