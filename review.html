@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthWatch | Review Case</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    :root { --review-green: #045844; --review-border: #2d8272; }
+    * { box-sizing: border-box; }
+    body { background: #fff; color: #111; }
+    .review-page { padding: 40px 24px; max-width: 1040px; }
+    .back-button, .more-button, .edit-button { display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--review-border); border-radius: 7px; background: #fff; color: var(--review-green); font-weight: 700; text-decoration: none; cursor: pointer; }
+    .back-button { padding: 7px 12px; color: #222; font-weight: 400; font-size: 1rem; }
+    .review-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 18px 0 24px; }
+    .review-header h1 { margin: 0; font-size: 2rem; }
+    .review-actions { display: flex; gap: 22px; align-items: center; }
+    .status { border: 2px solid var(--review-green); border-radius: 7px; padding: 8px 14px; color: var(--review-green); font-weight: 700; text-transform: lowercase; }
+    .more-button { width: 52px; height: 44px; justify-content: center; font-size: 1.3rem; letter-spacing: 2px; }
+    .review-card { border: 2px solid var(--review-border); border-radius: 9px; margin-top: 8px; padding: 24px 12px 16px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .detail-label { display: block; margin-bottom: 12px; font-size: 1rem; }
+    .detail-value { display: block; font-weight: 700; overflow-wrap: anywhere; }
+    .section-title { margin: 0 0 12px; font-size: 1rem; }
+    .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .notes { border: 2px solid var(--review-border); border-radius: 9px; padding: 9px 10px; margin-top: 20px; min-height: 78px; }
+    .notes p { margin: 8px 0 0; font-weight: 600; line-height: 1.35; }
+    .attachments { padding-bottom: 8px; }
+    .attachment { display: inline-flex; align-items: center; gap: 14px; border: 2px solid var(--review-border); border-radius: 6px; background: #e6e6e6; padding: 7px 12px; min-width: 370px; }
+    .attachment span { display: grid; gap: 3px; font-weight: 700; font-size: .84rem; }
+    .activity { position: relative; padding-bottom: 18px; }
+    .activity-list { display: grid; gap: 12px; }
+    .activity-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-weight: 600; }
+    .activity-row::before { content: ""; width: 8px; height: 8px; background: var(--review-green); border-radius: 50%; position: absolute; margin: 6px 0 0 -1px; }
+    .activity-row span:first-child { padding-left: 14px; }
+    .edit-button { float: right; padding: 9px 14px; font-size: 1rem; }
+    .submit-row { display: flex; justify-content: flex-end; margin-top: 18px; }
+    .submit-button { border: 0; border-radius: 7px; background: var(--review-green); color: #fff; padding: 12px 22px; font-weight: 700; font-size: 1rem; cursor: pointer; }
+    @media (max-width: 800px) { .review-page { padding: 24px 16px; } .summary-grid, .case-grid { grid-template-columns: repeat(2, 1fr); } .review-header { align-items: flex-start; flex-direction: column; } .attachment { min-width: 0; width: 100%; } }
+    @media (max-width: 520px) { .summary-grid, .case-grid { grid-template-columns: 1fr; } .activity-row { grid-template-columns: 1fr; gap: 4px; } .review-actions { width: 100%; justify-content: space-between; } }
+  </style>
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand"><img class="sidebar-logo" src="logo.png" alt="HealthWatch logo" /></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+        <a href="disease-report.html" class="sidebar-link">Disease Report</a>
+        <a href="C-R.html" class="sidebar-link active">Case Reporting</a>
+        <a href="analytics.html" class="sidebar-link">Analytics</a>
+        <a href="#" class="sidebar-link">Interactive Map</a>
+        <a href="health-facilities.html" class="sidebar-link">Health Facilities</a>
+        <a href="health-alerts.html" class="sidebar-link">Health Alerts</a>
+        <a href="user-profile.html" class="sidebar-link">Users</a>
+        <a href="user-security.html" class="sidebar-link">Settings</a>
+      </nav>
+      <a class="logout-button" href="login.html">Log Out</a>
+    </aside>
+
+    <main class="dashboard-main review-page">
+      <a class="back-button" href="add-case-report.html">← <span>Back to Report</span></a>
+      <header class="review-header">
+        <h1>Case Details</h1>
+        <div class="review-actions"><span class="status" id="statusBadge">confirmed</span><button class="more-button" type="button" aria-label="More options">•••</button></div>
+      </header>
+
+      <section class="review-card summary-grid">
+        <div><span class="detail-label">Report ID</span><strong class="detail-value" id="reportId">Pending</strong></div>
+        <div><span class="detail-label">Disease</span><strong class="detail-value" id="disease">Pending</strong></div>
+        <div><span class="detail-label">Date Reported</span><strong class="detail-value" id="reportedDate">Pending</strong></div>
+        <div><span class="detail-label">Reported By</span><strong class="detail-value" id="reportedBy">Health Officer</strong></div>
+      </section>
+
+      <section class="review-card">
+        <h2 class="section-title">Case information</h2>
+        <div class="case-grid">
+          <div><span class="detail-label">Date of onset</span><strong class="detail-value" id="onsetDate">Not provided</strong></div>
+          <div><span class="detail-label">Number of cases</span><strong class="detail-value" id="cases">Not provided</strong></div>
+          <div><span class="detail-label">Case classification</span><strong class="detail-value" id="classification">Not provided</strong></div>
+          <div><span class="detail-label">Location</span><strong class="detail-value" id="location">Not provided</strong></div>
+          <div><span class="detail-label">Health Facility (if any)</span><strong class="detail-value">Not provided</strong></div>
+        </div>
+        <div class="notes"><span class="detail-label">Description / Notes</span><p>Case information submitted for surveillance and follow-up.</p></div>
+      </section>
+
+      <section class="review-card attachments">
+        <h2 class="section-title">Attachments</h2>
+        <div class="attachment"><span aria-hidden="true">▣</span><span>No attachment added</span></div>
+      </section>
+
+      <section class="review-card activity">
+        <h2 class="section-title">Activity Log</h2>
+        <div class="activity-list">
+          <div class="activity-row"><span>Report prepared</span><span id="activityDate">Pending submission</span></div>
+          <div class="activity-row"><span>Awaiting final submission</span><span>Current step</span></div>
+        </div>
+        <button class="edit-button" id="editButton" type="button">Edit Report</button>
+      </section>
+      <div class="submit-row"><button class="submit-button" id="submitReport" type="button">Confirm &amp; Submit</button></div>
+    </main>
+  </div>
+
+  <script>
+    const draft = JSON.parse(sessionStorage.getItem('healthwatchCaseDraft') || 'null');
+    const user = JSON.parse(localStorage.getItem('healthwatchUser') || '{}');
+    const text = (id, value) => { document.querySelector(`#${id}`).textContent = value || 'Not provided'; };
+    const formatDate = value => value ? new Date(`${value}T00:00:00`).toLocaleDateString('en-GB') : 'Not provided';
+
+    if (draft) {
+      text('reportId', draft.id);
+      text('disease', draft.disease);
+      text('reportedDate', formatDate(draft.reportedDate));
+      text('reportedBy', user.fullName || 'Health Officer');
+      text('onsetDate', formatDate(draft.onsetDate));
+      text('cases', draft.cases || 'Not provided');
+      text('classification', draft.status);
+      text('location', `${draft.location} / ${draft.lga} / ${draft.state}`);
+      document.querySelector('#statusBadge').textContent = String(draft.status || 'pending').toLowerCase();
+      document.querySelector('#activityDate').textContent = formatDate(draft.reportedDate);
+    }
+
+    document.querySelector('#editButton').addEventListener('click', () => { window.location.href = 'add-case-report.html'; });
+    document.querySelector('#submitReport').addEventListener('click', () => {
+      if (!draft) { window.location.href = 'add-case-report.html'; return; }
+      const reports = JSON.parse(localStorage.getItem('healthwatchReports') || '[]');
+      const report = { id: draft.id, disease: draft.disease, location: `${draft.location} / ${draft.lga} / ${draft.state}`, by: user.fullName || 'Health Officer', date: draft.reportedDate, status: `${draft.status} case`, action: 'Surveillance and follow-up' };
+      localStorage.setItem('healthwatchReports', JSON.stringify([report, ...reports]));
+      sessionStorage.removeItem('healthwatchCaseDraft');
+      window.location.href = 'C-R.html';
+    });
+  </script>
+</body>
+</html>

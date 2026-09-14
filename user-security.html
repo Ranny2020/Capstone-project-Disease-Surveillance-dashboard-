@@ -83,8 +83,32 @@
       </div>
     </main>
 
+    <script src="script.js"></script>
     <script>
+      function hydrateSecurityProfile() {
+        const user = JSON.parse(localStorage.getItem('healthwatchUser') || 'null');
+        if (!user) return;
+
+        const fullName = user.fullName || 'User';
+        const role = user.role || 'Health Officer';
+        const email = user.email || '';
+
+        const nameEl = document.querySelector('.profile-card h2');
+        if (nameEl) nameEl.textContent = fullName;
+
+        const roleEl = document.querySelector('.profile-card .role');
+        if (roleEl) roleEl.textContent = role;
+
+        const emailEl = document.querySelector('.profile-card .email');
+        if (emailEl) emailEl.textContent = email;
+
+        const emailValueEl = document.querySelector('.setting-copy span');
+        if (emailValueEl && email) emailValueEl.textContent = email;
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
+        hydrateSecurityProfile();
+
         document.querySelectorAll('.green-btn').forEach((button) => {
           button.addEventListener('click', () => {
             const message = button.dataset.message;

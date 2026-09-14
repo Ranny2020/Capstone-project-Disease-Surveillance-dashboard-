@@ -1,6 +1,5 @@
 // Backend API URL - default to your Render deployment; can be overridden with `window.__API_URL__`
 const API_URL = (typeof window !== 'undefined' && window.__API_URL__) ? window.__API_URL__ : 'https://capstone-project-disease-surveillance.onrender.com';
-
 const buttons = document.querySelectorAll('button.primary-button, button.secondary-button');
 
 buttons.forEach((button) => {
@@ -76,6 +75,89 @@ function showAuthMessage(message, isError = false) {
   window.alert(`${title}: ${message}`);
 }
 
+function getStoredUser() {
+  try {
+    const rawUser = localStorage.getItem('healthwatchUser');
+    return rawUser ? JSON.parse(rawUser) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveStoredUser(user) {
+  if (!user) return;
+  const safeUser = {
+    id: user.id || '',
+    fullName: user.fullName || user.name || '',
+    email: user.email || '',
+    phone: user.phone || '',
+    organization: user.organization || '',
+    role: user.role || 'Health Officer',
+    state: user.state || '',
+    createdAt: user.createdAt || new Date().toISOString()
+  };
+  localStorage.setItem('healthwatchUser', JSON.stringify(safeUser));
+}
+
+function hydrateUserProfile() {
+  const user = getStoredUser();
+  if (!user) return;
+
+  const fullName = user.fullName || 'User';
+  const role = user.role || 'Health Officer';
+  const email = user.email || '';
+  const phone = user.phone || '';
+  const state = user.state || '';
+
+  document.querySelectorAll('.user-name').forEach((el) => {
+    el.textContent = fullName;
+  });
+
+  document.querySelectorAll('.profile-name').forEach((el) => {
+    el.textContent = fullName;
+  });
+
+  document.querySelectorAll('.profile-role, .role, .user-role').forEach((el) => {
+    el.textContent = role;
+  });
+
+  document.querySelectorAll('.profile-email, .email').forEach((el) => {
+    el.textContent = email;
+  });
+
+  document.querySelectorAll('.user-avatar').forEach((el) => {
+    const initials = fullName
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join('')
+      .toUpperCase();
+    el.textContent = initials || 'U';
+  });
+
+  const fullNameInput = document.querySelector('input[name="fullName"]');
+  if (fullNameInput) fullNameInput.value = fullName;
+
+  const emailInput = document.querySelector('input[name="email"]');
+  if (emailInput) emailInput.value = email;
+
+  const phoneInput = document.querySelector('input[name="phone"]');
+  if (phoneInput) phoneInput.value = phone;
+
+  const stateInput = document.querySelector('input[name="state"]');
+  if (stateInput) stateInput.value = state;
+
+  const profileSummary = document.querySelector('.profile-card h2');
+  if (profileSummary) profileSummary.textContent = fullName;
+
+  const roleSummary = document.querySelector('.profile-card .role');
+  if (roleSummary) roleSummary.textContent = role;
+
+  const emailSummary = document.querySelector('.profile-card .email');
+  if (emailSummary) emailSummary.textContent = email;
+}
+
 async function handleSignupForm() {
   const signupForm = document.getElementById('signupForm');
   if (!signupForm) return;
@@ -109,6 +191,18 @@ async function handleSignupForm() {
         return;
       }
 
+      const signedUpUser = {
+        id: result.user?.id || '',
+        fullName: payload.fullName,
+        email: payload.email,
+        phone: payload.phone,
+        organization: payload.organization,
+        role: payload.role,
+        state: payload.state,
+        createdAt: new Date().toISOString()
+      };
+
+      saveStoredUser(signedUpUser);
       showAuthMessage(result.message || 'Account created successfully.');
       window.location.href = 'login.html';
     } catch (error) {
@@ -143,6 +237,13 @@ async function handleLoginForm() {
         return;
       }
 
+      const signedInUser = result.user || getStoredUser() || {
+        fullName: payload.email.split('@')[0].replace(/[._-]/g, ' '),
+        email: payload.email,
+        role: 'Health Officer'
+      };
+
+      saveStoredUser(signedInUser);
       showAuthMessage(result.message || 'Login successful.');
       window.location.href = 'dashboard.html';
     } catch (error) {
@@ -189,8 +290,109 @@ function renderDonutChart(){
   }
 }
 
+const defaultFacilities = [
+  { name: 'Nassarawa General Hospital, Kano', state: 'Kano State', phone: '+234 7012345678', active: true },
+  { name: 'Aminu Kano Teaching Hospital, Kano', state: 'Kano State', phone: '+234 7012345678', active: true },
+  { name: 'Lagos State University Teaching Hospital (LASUTH)', state: 'Lagos State', phone: '+234 7012345678', active: true },
+  { name: 'General Hospital, Kawo Kaduna', state: 'Kaduna State', phone: '+234 7012345678', active: true },
+  { name: 'Asokoro District Hospital', state: 'FCT, Abuja', phone: '+234 7012345678', active: true },
+  { name: 'Nnamdi Azikiwe University Teaching Hospital', state: 'Anambra State', phone: '+234 7012345678', active: true },
+  { name: 'University of Nigeria Teaching Hospital (UNTH)', state: 'Enugu State', phone: '+234 7012345678', active: true },
+  { name: 'General Hospital, Lafia', state: 'Nasarawa State', phone: '+234 7012345678', active: true }
+];
+
+function getFacilities() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('healthwatchFacilities') || 'null');
+    if (Array.isArray(saved) && saved.length) return saved;
+  } catch (error) {
+    // ignore malformed storage and fall back to defaults
+  }
+
+  localStorage.setItem('healthwatchFacilities', JSON.stringify(defaultFacilities));
+  return defaultFacilities;
+}
+
+function saveFacilities(facilities) {
+  localStorage.setItem('healthwatchFacilities', JSON.stringify(facilities));
+}
+
+function renderFacilities() {
+  const list = document.querySelector('.facility-list');
+  if (!list) return;
+
+  const facilities = getFacilities();
+  list.innerHTML = facilities.map((facility) => `
+    <div class="facility-item">
+      <div class="facility-avatar">+</div>
+      <div class="facility-info">
+        <div class="facility-name">${facility.name}</div>
+        <div class="facility-sub">${facility.state}</div>
+      </div>
+      <div class="facility-phone">${facility.phone}</div>
+      <div class="facility-meta">
+        <span class="status-badge ${facility.active !== false ? 'active' : ''}">${facility.active !== false ? 'Active' : 'Inactive'}</span>
+        <button class="edit-btn" aria-label="Edit facility">✎</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setupFacilityForm() {
+  const modal = document.getElementById('facilityModal');
+  const addBtn = document.getElementById('addFacilityBtn');
+  const closeBtn = document.getElementById('closeFacilityModal');
+  const cancelBtn = document.getElementById('cancelFacilityModal');
+  const form = document.getElementById('facilityForm');
+
+  if (!modal || !addBtn || !closeBtn || !cancelBtn || !form) return;
+
+  const openModal = () => modal.classList.remove('hidden');
+  const closeModal = () => {
+    modal.classList.add('hidden');
+    form.reset();
+  };
+
+  addBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const facilityName = (formData.get('facilityName') || '').toString().trim();
+    const facilityState = (formData.get('facilityState') || '').toString().trim();
+    const facilityPhone = (formData.get('facilityPhone') || '').toString().trim();
+
+    if (!facilityName || !facilityState || !facilityPhone) {
+      alert('Please complete all facility fields before saving.');
+      return;
+    }
+
+    const facilities = getFacilities();
+    facilities.unshift({
+      name: facilityName,
+      state: facilityState,
+      phone: facilityPhone,
+      active: true
+    });
+
+    saveFacilities(facilities);
+    renderFacilities();
+    setupFacilitiesEdit();
+    closeModal();
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  hydrateUserProfile();
+  renderFacilities();
   renderDonutChart();
+  setupFacilityForm();
 });
 
 // Inline edit handler for health facilities list

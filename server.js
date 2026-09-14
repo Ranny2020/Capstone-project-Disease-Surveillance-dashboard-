@@ -146,7 +146,17 @@ app.post('/api/signup', async (req, res) => {
     // ignore
   }
 
-  res.status(201).json({ message: 'Account created successfully.' });
+  const responseUser = {
+    id: newUser.id,
+    fullName: newUser.fullName,
+    email: newUser.email,
+    phone: newUser.phone,
+    organization: newUser.organization,
+    role: newUser.role,
+    state: newUser.state
+  };
+
+  res.status(201).json({ message: 'Account created successfully.', user: responseUser });
 });
 
 app.post('/api/login', async (req, res) => {
@@ -170,7 +180,17 @@ app.post('/api/login', async (req, res) => {
     return res.status(401).json({ message: 'Invalid email or password.' });
   }
 
-  res.json({ message: 'Login successful.' });
+  const responseUser = {
+    id: user.id,
+    fullName: user.fullName,
+    email: user.email,
+    phone: user.phone,
+    organization: user.organization,
+    role: user.role,
+    state: user.state
+  };
+
+  res.json({ message: 'Login successful.', user: responseUser });
 });
 
 // Health check endpoint for diagnostics
